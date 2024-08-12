@@ -1,10 +1,10 @@
-import Home from "./pages/Home.js";
-import Login from "./pages/Login.js";
+import Button from "./components/Button.js";
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      <p>hello</p>
+      <Button />
     </div>
   );
 }

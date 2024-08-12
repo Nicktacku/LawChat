@@ -1,10 +1,9 @@
-import Home from "./pages/Home.js";
-import Login from "./pages/Login.js";
+import "./styles/App.css";
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      <p>hello</p>
     </div>
   );
 }
