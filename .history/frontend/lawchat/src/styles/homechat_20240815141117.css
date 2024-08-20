@@ -1,0 +1,17 @@
+.sidebar {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 16px;
+  }
+
+.chat {
+    margin-left: 15%
+}
+
+.img{
+    size: auto;
+  }

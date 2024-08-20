@@ -1,0 +1,31 @@
+.sidebar {
+    height: 100%;
+    width: 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 16px;
+    border-right: 1px solid black;
+    /* justify-content: center; */
+    /* align-items: center; */
+  }
+
+.chat {
+    margin-left: 40%;
+    margin-top: 5%;
+}
+
+.chats {
+    margin-left: 6%
+}
+
+.img{
+    width: 9vh;
+    padding-bottom: 5%;
+  }
+
+.search {
+    border-radius: 30px;
+    width: 55vh
+}

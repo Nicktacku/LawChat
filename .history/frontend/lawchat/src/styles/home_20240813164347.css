@@ -1,0 +1,50 @@
+.body {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.navbar {
+    overflow: hidden;
+    border-bottom: 1px solid rgba(129, 133, 137, 0.3);
+    padding-left: 3%;
+    padding-right: 3%;    
+}
+
+
+
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.nav-item {
+    float: right;
+    padding: 2vh;
+}
+
+.logo{
+    overflow: hidden;
+
+    float:left;
+}
+
+.body-content {
+    width: 40%;
+    float: left;
+}
+
+.body-image {
+    width: 60%;
+    float: right;
+}
+
+.h1{
+    font-size: 18vh;
+    margin-top: 30%;
+}
+
+.p {
+    font-size: 5vh;
+}

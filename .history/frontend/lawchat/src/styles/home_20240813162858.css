@@ -1,0 +1,21 @@
+.navbar {
+    overflow: hidden;
+}
+
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.nav-item {
+    float: right;
+    padding: 2vh;
+}
+
+.logo{
+    overflow: hidden;
+
+    float:left;
+}

@@ -1,0 +1,11 @@
+.nav-list {
+    list-style-type: none;
+    overflow: hidden;
+    margin: 0;
+    padding:0;
+}
+
+.nav-item {
+    float: right;
+
+}

@@ -1,0 +1,134 @@
+import express from "express";
+import mongoose from "mongoose";
+import { Gc } from "../models/gcModel.js";
+
+const router = express.Router();
+
+router.get("/", async (req, res) => {
+  try {
+    const gc = await Gc.find({});
+
+    return res.status(200).json(gc);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+  }
+});
+
+router.post("/create", async (req, res) => {
+  try {
+    if (!req.body.name || !req.body.members || !req.body.last_chat) {
+      console.log(message.error);
+      return res.status(400).send({
+        message: `this is the error ${error.message}`,
+      });
+    }
+    const newGc = {
+      name: req.body.name,
+      members: req.body.members,
+      last_chat: req.body.last_chat,
+    };
+    const gc = await Gc.create(newGc);
+    console.log("created");
+
+    return res.status(201).send(gc);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: `this is the error ${error.message}` });
+  }
+});
+
+router.put("/rename/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid ID format" });
+    }
+
+    const result = await Gc.findByIdAndUpdate(
+      id,
+      { name: req.body.name },
+      { new: true }
+    );
+
+    if (!result) {
+      return res.status(404).json({ message: "Gc not found" });
+    }
+
+    console.log("renamed successfully");
+    return res.status(200).json({ message: "updated successfully" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: `this is the error ${error.message}` });
+  }
+});
+
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const res = await Gc.findByIdAndDelete(id);
+
+    if (!res) {
+      return res.status(404).json({ message: "group not found" });
+    }
+
+    return res.status(200).json({ message: "deleted" });
+
+    return res.status(201).send(gc);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: `this is the error ${error.message}` });
+  }
+});
+
+router.get("/chats/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const gc = await Gc.findById(id);
+    console.log("chats: ", gc.chats);
+    return res.status(200).json(gc.chats);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+    console.log("error:", error.message);
+  }
+});
+
+router.post("/chat/send/:gcId", async (req, res) => {
+  const { gcId } = req.params; // Get the group chat ID from the URL
+  const { message, sender, time, is_owner, last_chat } = req.body; // Get the chat data from the request body
+
+  try {
+    // Find the group chat by ID and update the chats array
+    const updatedGc = await Gc.findByIdAndUpdate(
+      gcId,
+      {
+        $push: {
+          last_chat: {
+            last_chat,
+          },
+          chats: {
+            message,
+            sender: new mongoose.Types.ObjectId(sender), // Convert to ObjectId
+            time,
+            is_owner,
+          },
+        },
+      },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedGc) {
+      return res.status(404).json({ message: "Group chat not found" });
+    }
+
+    console.log(`message sent`);
+    res.status(200).json(updatedGc);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: error.message, error });
+  }
+});
+
+export default router;
